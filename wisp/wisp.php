@@ -379,6 +379,7 @@ function wisp_CreateAccount(array $params) {
 
         unset($params['password']);
         Capsule::table('tblhosting')->where('id', $params['serviceid'])->update([
+            'domain' => wisp_GetServerID($params),
             'username' => '',
             'password' => '',
         ]);
