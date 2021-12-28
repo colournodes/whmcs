@@ -379,7 +379,6 @@ function wisp_CreateAccount(array $params) {
 
         unset($params['password']);
         Capsule::table('tblhosting')->where('id', $params['serviceid'])->update([
-            'domain' => wisp_GetServerID($params),
             'username' => '',
             'password' => '',
         ]);
@@ -572,8 +571,8 @@ function wisp_LoginLink(array $params) {
         if(!isset($serverId)) return;
 
         $hostname = wisp_GetHostname($params);
-        echo '[<a href="'.$hostname.'/admin/servers/view/' . $serverId . '" target="_blank">Go to Service</a>]';
-        echo '<p style="float: right">[<a href="https://github.com/wisp-gg/whmcs/issues" target="_blank">Report A Bug</a>]</p>';
+        $code =  '<a href="'.$hostname.'/admin/servers/view/' . $serverId . '" target="_blank">Go to Service</a>';
+	return $code;
     } catch(Exception $err) {
         // Ignore
     }
